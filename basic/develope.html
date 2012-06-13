@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script src="js/gadget.js"></script>
+    <script>
+        init({
+        	application: "http://test.iteacher.tw/cs4/test_gadget",
+            paramValues: {}
+        });
+    </script>
+    
+	<link href="css/bootstrap.css" rel="stylesheet"/>
+	<link href="css/bootstrap-responsive.css" rel="stylesheet"/>
+	<link href="css/default.css" rel="stylesheet"/>
+	
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/default.js"></script>
+</head>
+<body>
+	<div id="gadget">
+		<!-- 取得學校資訊 -->
+		<a href="#" class="btn btn-primary" data-loading-text="讀取中..." id="get-school-info">取得學校資訊</a>
+		<table class="table table-striped" id="school-info">
+			<caption><h2>學校資訊</h2></caption>
+			<tbody>
+				<tr>
+					<td><span class="label label-info">中文名稱：</span></td>
+					<td><span id="chinese-name"></span></td>
+				</tr>
+				<tr>
+					<td><span class="label label-info">英文名稱：</span></td>
+					<td><span id="english-name"></span></td>
+				</tr>
+				<tr>
+					<td><span class="label label-info">地址：</span></td>
+					<td><span id="address"></span></td>
+				</tr>
+				<tr>
+					<td><span class="label label-info">電話：</span></td>
+					<td><span id="telephone"></span></td>
+				</tr>
+				<tr>
+					<td><span class="label label-info">傳真：</span></td>
+					<td><span id="fax"></span></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- 取得學校Logo -->
+		<a href="#" class="btn btn-primary" data-loading-text="讀取中..." id="get-school-logo">取得學校Logo</a>
+		<div id="school-logo"></div>
+		
+		<!-- 取得教授課程 -->
+		<a href="#" class="btn btn-primary" data-loading-text="讀取中..." id="get-my-courses">取得教授課程</a>
+		<table class="table table-striped" id="course-list">
+			<thead><tr><td>學年度</td><td>學期</td><td>課程</td><td>學分</td></tr></thead>
+			<tbody></tbody>
+		</table>
+	</div>
+</body>
+</html>
