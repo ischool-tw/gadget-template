@@ -89,7 +89,7 @@ $ ->
 			getMorality()
 			getAttendance()
 			getDiscipline()
-	
+
 	$("#editModal").modal { show: false }
 	$("#editModal").on "hidden", () ->
 		$("#editModal #errorMessage").html ""
