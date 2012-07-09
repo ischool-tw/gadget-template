@@ -1,67 +1,110 @@
-#student-list {
-	overflow: hidden;
-	.nav-header {
-		font-size: 14px;
+#web {
+	#student-list {
+		overflow: hidden;
+		.nav-header {
+			font-size: 14px;
+		}
+		.student-photo {
+			width: 21px;
+			height: 28px;
+		}
+		.student-name {
+			font-size: 14px;
+			margin-left: 8px;
+		}
+		.seat-no, .student-number {
+			font-size: 12px;
+			margin-left: 8px;
+		}
 	}
-	.student-photo {
-		width: 21px;
-		height: 28px;
+	
+	#baseinfo {
+		overflow: hidden;
+		.baseinfo-item {
+			margin-bottom: 20px;
+			.label-title {
+				margin-bottom: 10px;
+			}
+		}
+		.photo {
+			width: 90px;
+			height: 120px;
+			margin-right: 20px;
+			padding: 3px;
+			border: 1px solid #999;
+		}
+		tr td:first-child {
+			width: 60px;
+		}
 	}
-	.student-name {
-		font-size: 14px;
-		margin-left: 8px;
+	
+	#academic {
+		overflow: hidden;
+		.academic-item {
+			margin-bottom: 20px;
+			.label-title {
+				margin-bottom: 10px;
+			}
+		}
+		tr td:first-child {
+			width: 200px;
+		}
 	}
-	.seat-no, .student-number {
-		font-size: 12px;
-		margin-left: 8px;
+	
+	#behavior {
+		overflow: hidden;
+		.behavior-item {
+			margin-bottom: 20px;
+			.label-title {
+				margin-bottom: 10px;
+			}
+			.content {
+				margin-bottom: 10px;
+			}
+		}
+		tr td:first-child {
+			width: 200px;
+		}
 	}
 }
 
-#baseinfo {
-	overflow: hidden;
-	.baseinfo-item {
-		margin-bottom: 20px;
-		.label-title {
-			margin-bottom: 10px;
+#phone {
+	margin-top: 70px;
+	#header {
+		position: fixed;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, .7);
+		.container {
+			margin-right: 20px;
 		}
 	}
-	.photo {
-		width: 90px;
-		height: 120px;
-		margin-right: 20px;
-		padding: 3px;
-		border: 1px solid #999;
-	}
-	tr td:first-child {
-		width: 60px;
-	}
-}
-
-#academic {
-	overflow: hidden;
-	.academic-item {
-		margin-bottom: 20px;
-		.label-title {
-			margin-bottom: 10px;
+	#container {
+		#student-list, #baseinfo, #academic, behavior {
+			&.hide {
+				display: none;
+			}
 		}
-	}
-	tr td:first-child {
-		width: 200px;
-	}
-}
-
-#behavior {
-	overflow: hidden;
-	.behavior-item {
-		margin-bottom: 20px;
-		.label-title {
-			margin-bottom: 10px;
+		#student-list {
+			.student-photo {
+				width: 21px;
+				height: 28px;
+			}
+			.student-name {
+				font-size: 14px;
+				margin-left: 8px;
+			}
+			.class-name, .seat-no, .student-number {
+				font-size: 12px;
+				margin-left: 8px;
+			}
 		}
-		.content {
-			margin-bottom: 10px;
+		#baseinfo {
+			.photo {
+				width: 75px;
+				height: 100px;
+				margin-right: 10px;
+				padding: 2px;
+				border: 1px solid #999;
+			}
 		}
-	}
-	tr td:first-child {
-		width: 200px;
 	}
 }
