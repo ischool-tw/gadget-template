@@ -1,19 +1,18 @@
 global = {}
 
 $ ->
-	gadget.autofit document.getElementById "widget"
 	gadget.onSizeChanged (size) ->
-		$("#student-list").height size.height - 50
-		$("#baseinfo").height size.height - 80
-		$("#academic").height size.height - 80
-		$("#behavior").height size.height - 80
+		$("#web #student-list").height size.height - 50
+		$("#web #baseinfo").height size.height - 80
+		$("#web #academic").height size.height - 80
+		$("#web #behavior").height size.height - 80
 	
-	$("#filter-keyword").keyup () ->
+	$("#web #filter-keyword").keyup () ->
 		resetData()
 		className = ""
 		items = []
 		global.students.each (index, student) ->
-			if @StudentName.indexOf($("#filter-keyword").val()) isnt -1
+			if @StudentName.indexOf($("#web #filter-keyword").val()) isnt -1
 				if @ClassName isnt className
 					className = @ClassName
 					items.push "<li class='nav-header'>#{@ClassName}</li>"
@@ -37,8 +36,8 @@ $ ->
 					</li>
 				"""
 		
-		$("#student-list").html items.join ""
-		$("#student-list a").click (e) ->
+		$("#web #student-list").html items.join ""
+		$("#web #student-list a").click (e) ->
 			e.preventDefault()
 			$(@).tab "show"
 			global.student = global.students[$(@).attr("student-index")]
@@ -49,12 +48,12 @@ $ ->
 			getAttendance()
 			getDiscipline()
 			
-	$("#filter-student").click () ->
+	$("#web #filter-student").click () ->
 		resetData()
 		className = ""
 		items = []
 		global.students.each (index, student) ->
-			if @StudentName.indexOf($("#filter-keyword").val()) isnt -1
+			if @StudentName.indexOf($("#web #filter-keyword").val()) isnt -1
 				if @ClassName isnt className
 					className = @ClassName
 					items.push "<li class='nav-header'>#{@ClassName}</li>"
@@ -78,8 +77,8 @@ $ ->
 					</li>
 				"""
 			
-		$("#student-list").html items.join ""
-		$("#student-list a").click (e) ->
+		$("#web #student-list").html items.join ""
+		$("#web #student-list a").click (e) ->
 			e.preventDefault()
 			$(@).tab "show"
 			global.student = global.students[$(@).attr("student-index")]
@@ -90,11 +89,11 @@ $ ->
 			getAttendance()
 			getDiscipline()
 
-	$("#editModal").modal { show: false }
-	$("#editModal").on "hidden", () ->
-		$("#editModal #errorMessage").html ""
+	$("#web #editModal").modal { show: false }
+	$("#web #editModal").on "hidden", () ->
+		$("#web #editModal #errorMessage").html ""
 	
-	$("#editModal #save-data").click () ->
+	$("#web #editModal #save-data").click () ->
 		request = ""
 		request_udt = ""
 		edit_target = $(@).attr("edit-target")
@@ -103,9 +102,9 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<ContactPhone>#{$('#editModal #contact-phone').val()}</ContactPhone>
-						<PermanentPhone>#{$('#editModal #permanent-phone').val()}</PermanentPhone>
-						<SMSPhone>#{$('#editModal #sms-phone').val()}</SMSPhone>
+						<ContactPhone>#{$('#web #editModal #contact-phone').val()}</ContactPhone>
+						<PermanentPhone>#{$('#web #editModal #permanent-phone').val()}</PermanentPhone>
+						<SMSPhone>#{$('#web #editModal #sms-phone').val()}</SMSPhone>
 					</StudentInfo>
 				</Request>
 			"""
@@ -117,20 +116,20 @@ $ ->
 						<MailingAddress>
 							<AddressList>
 								<Address>
-									<ZipCode>#{$('#editModal #contact-zip-code').val()}</ZipCode>
-									<County>#{$('#editModal #contact-county').val()}</County>
-									<Town>#{$('#editModal #contact-town').val()}</Town>
-									<DetailAddress>#{$('#editModal #contact-detail').val()}</DetailAddress>
+									<ZipCode>#{$('#web #editModal #contact-zip-code').val()}</ZipCode>
+									<County>#{$('#web #editModal #contact-county').val()}</County>
+									<Town>#{$('#web #editModal #contact-town').val()}</Town>
+									<DetailAddress>#{$('#web #editModal #contact-detail').val()}</DetailAddress>
 								</Address>
 							</AddressList>
 						</MailingAddress>
 						<PermanentAddress>
 							<AddressList>
 								<Address>
-									<ZipCode>#{$('#editModal #permanent-zip-code').val()}</ZipCode>
-									<County>#{$('#editModal #permanent-county').val()}</County>
-									<Town>#{$('#editModal #permanent-town').val()}</Town>
-									<DetailAddress>#{$('#editModal #permanent-detail').val()}</DetailAddress>
+									<ZipCode>#{$('#web #editModal #permanent-zip-code').val()}</ZipCode>
+									<County>#{$('#web #editModal #permanent-county').val()}</County>
+									<Town>#{$('#web #editModal #permanent-town').val()}</Town>
+									<DetailAddress>#{$('#web #editModal #permanent-detail').val()}</DetailAddress>
 								</Address>
 							</AddressList>
 						</PermanentAddress>
@@ -142,7 +141,7 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<Email>#{$('#editModal #email').val()}</Email>
+						<Email>#{$('#web #editModal #email').val()}</Email>
 					</StudentInfo>
 				</Request>
 			"""
@@ -150,8 +149,8 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<FacebookID>#{$('#editModal #facebook').val()}</FacebookID>
-						<SkypeID>#{$('#editModal #skype').val()}</SkypeID>
+						<FacebookID>#{$('#web #editModal #facebook').val()}</FacebookID>
+						<SkypeID>#{$('#web #editModal #skype').val()}</SkypeID>
 					</StudentInfo>
 				</Request>
 			"""
@@ -160,9 +159,9 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<EmergencyContactName>#{$('#editModal #name').val()}</EmergencyContactName>
-						<EmergencyContactRelationship>#{$('#editModal #relationship').val()}</EmergencyContactRelationship>
-						<EmergencyContactTel>#{$('#editModal #phone').val()}</EmergencyContactTel>
+						<EmergencyContactName>#{$('#web #editModal #name').val()}</EmergencyContactName>
+						<EmergencyContactRelationship>#{$('#web #editModal #relationship').val()}</EmergencyContactRelationship>
+						<EmergencyContactTel>#{$('#web #editModal #phone').val()}</EmergencyContactTel>
 					</StudentInfo>
 				</Request>
 			"""
@@ -171,15 +170,15 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<CustodianName>#{$('#editModal #name').val()}</CustodianName>
-						<CustodianRelationship>#{$('#editModal #relationship').val()}</CustodianRelationship>
+						<CustodianName>#{$('#web #editModal #name').val()}</CustodianName>
+						<CustodianRelationship>#{$('#web #editModal #relationship').val()}</CustodianRelationship>
 						<CustodianOtherInfo>
 							<CustodianOtherInfo>
-								<Relationship>#{$('#editModal #relationship').val()}</Relationship>
-								<Phone>#{$('#editModal #phone').val()}</Phone>
-								<Email>#{$('#editModal #email').val()}</Email>
-								<Job>#{$('#editModal #job').val()}</Job>
-								<EducationDegree>#{$('#editModal #education').val()}</EducationDegree>
+								<Relationship>#{$('#web #editModal #relationship').val()}</Relationship>
+								<Phone>#{$('#web #editModal #phone').val()}</Phone>
+								<Email>#{$('#web #editModal #email').val()}</Email>
+								<Job>#{$('#web #editModal #job').val()}</Job>
+								<EducationDegree>#{$('#web #editModal #education').val()}</EducationDegree>
 							</CustodianOtherInfo>
 						</CustodianOtherInfo>
 					</StudentInfo>
@@ -190,14 +189,14 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<FatherName>#{$('#editModal #name').val()}</FatherName>
+						<FatherName>#{$('#web #editModal #name').val()}</FatherName>
 						<FatherOtherInfo>
 							<FatherOtherInfo>
 								<Relationship>父</Relationship>
-								<Phone>#{$('#editModal #phone').val()}</Phone>
-								<Email>#{$('#editModal #email').val()}</Email>
-								<Job>#{$('#editModal #job').val()}</Job>
-								<EducationDegree>#{$('#editModal #education').val()}</EducationDegree>
+								<Phone>#{$('#web #editModal #phone').val()}</Phone>
+								<Email>#{$('#web #editModal #email').val()}</Email>
+								<Job>#{$('#web #editModal #job').val()}</Job>
+								<EducationDegree>#{$('#web #editModal #education').val()}</EducationDegree>
 							</FatherOtherInfo>
 						</FatherOtherInfo>
 					</StudentInfo>
@@ -208,14 +207,14 @@ $ ->
 				<Request>
 					<StudentInfo>
 						<StudentID>#{global.student.StudentID}</StudentID>
-						<MotherName>#{$('#editModal #name').val()}</MotherName>
+						<MotherName>#{$('#web #editModal #name').val()}</MotherName>
 						<MotherOtherInfo>
 							<MotherOtherInfo>
 								<Relationship>父</Relationship>
-								<Phone>#{$('#editModal #phone').val()}</Phone>
-								<Email>#{$('#editModal #email').val()}</Email>
-								<Job>#{$('#editModal #job').val()}</Job>
-								<EducationDegree>#{$('#editModal #education').val()}</EducationDegree>
+								<Phone>#{$('#web #editModal #phone').val()}</Phone>
+								<Email>#{$('#web #editModal #email').val()}</Email>
+								<Job>#{$('#web #editModal #job').val()}</Job>
+								<EducationDegree>#{$('#web #editModal #education').val()}</EducationDegree>
 							</MotherOtherInfo>
 						</MotherOtherInfo>
 					</StudentInfo>
@@ -228,7 +227,7 @@ $ ->
 				body: request,
 				result: (response, error, xhr) ->
 					if error?
-						$("#editModal #errorMessage").html """
+						$("#web #editModal #errorMessage").html """
 							<div class='alert alert-error'>
 								<button class='close' data-dismiss='alert'>×</button>
 								<strong>呼叫服務失敗或網路異常，請稍候重試!</strong>
@@ -237,69 +236,69 @@ $ ->
 					else
 						if response.Result.ExecuteCount is "1"
 							if edit_target is "phone"
-								global.student.ContactPhone = $('#editModal #contact-phone').val()
-								global.student.PermanentPhone = $('#editModal #permanent-phone').val()
-								global.student.SMSPhone = $('#editModal #sms-hone').val()
+								global.student.ContactPhone = $('#web #editModal #contact-phone').val()
+								global.student.PermanentPhone = $('#web #editModal #permanent-phone').val()
+								global.student.SMSPhone = $('#web #editModal #sms-hone').val()
 							
 							if edit_target is "address"
 								global.student.MailingAddress = {
 									AddressList: {
 										Address: {
-											ZipCode: $('#editModal #contact-zip-code').val()
-											County: $('#editModal #contact-county').val()
-											Town: $('#editModal #contact-town').val()
-											DetailAddress: $('#editModal #contact-detail').val()
+											ZipCode: $('#web #editModal #contact-zip-code').val()
+											County: $('#web #editModal #contact-county').val()
+											Town: $('#web #editModal #contact-town').val()
+											DetailAddress: $('#web #editModal #contact-detail').val()
 										}
 									}
 								}
 								global.student.PermanentAddress = {
 									AddressList: {
 										Address: {
-											ZipCode: $('#editModal #permanent-zip-code').val()
-											County: $('#editModal #permanent-county').val()
-											Town: $('#editModal #permanent-town').val()
-											DetailAddress: $('#editModal #permanent-detail').val()
+											ZipCode: $('#web #editModal #permanent-zip-code').val()
+											County: $('#web #editModal #permanent-county').val()
+											Town: $('#web #editModal #permanent-town').val()
+											DetailAddress: $('#web #editModal #permanent-detail').val()
 										}
 									}
 								}
 							
 							if edit_target is "message"
-								global.student.EmailAddress = $('#editModal #email').val()
+								global.student.EmailAddress = $('#web #editModal #email').val()
 							
 							if edit_target is "custodian-info"
-								global.student.CustodianName = $('#editModal #name').val()
-								global.student.CustodianRelationship = $('#editModal #relationship').val()
+								global.student.CustodianName = $('#web #editModal #name').val()
+								global.student.CustodianRelationship = $('#web #editModal #relationship').val()
 								global.student.CustodianOtherInfo = {
 									CustodianOtherInfo: {
-										Relationship: $('#editModal #relationship').val(),
-										Phone: $('#editModal #phone').val(),
-										Email: $('#editModal #email').val(),
-										Job: $('#editModal #job').val(),
-										EducationDegree: $('#editModal #education').val()
+										Relationship: $('#web #editModal #relationship').val(),
+										Phone: $('#web #editModal #phone').val(),
+										Email: $('#web #editModal #email').val(),
+										Job: $('#web #editModal #job').val(),
+										EducationDegree: $('#web #editModal #education').val()
 									}
 								}
 							
 							if edit_target is "father-info"
-								global.student.FatherName = $('#editModal #name').val()
+								global.student.FatherName = $('#web #editModal #name').val()
 								global.student.FatherOtherInfo = {
 									FatherOtherInfo: {
 										Relationship: '父',
-										Phone: $('#editModal #phone').val(),
-										Email: $('#editModal #email').val(),
-										Job: $('#editModal #job').val(),
-										EducationDegree: $('#editModal #education').val()
+										Phone: $('#web #editModal #phone').val(),
+										Email: $('#web #editModal #email').val(),
+										Job: $('#web #editModal #job').val(),
+										EducationDegree: $('#web #editModal #education').val()
 									}
 								}
 							
 							if edit_target is "mother-info"
-								global.student.MotherName = $('#editModal #name').val()
+								global.student.MotherName = $('#web #editModal #name').val()
 								global.student.MotherOtherInfo = {
 									MotherOtherInfo: {
 										Relationship: '母',
-										Phone: $('#editModal #phone').val(),
-										Email: $('#editModal #email').val(),
-										Job: $('#editModal #job').val(),
-										EducationDegree: $('#editModal #education').val()
+										Phone: $('#web #editModal #phone').val(),
+										Email: $('#web #editModal #email').val(),
+										Job: $('#web #editModal #job').val(),
+										EducationDegree: $('#web #editModal #education').val()
 									}
 								}
 								
@@ -309,7 +308,7 @@ $ ->
 									body: request_udt,
 									result: (response, error, xhr) ->
 										if error?
-											$("#editModal #errorMessage").html """
+											$("#web #editModal #errorMessage").html """
 												<div class='alert alert-error'>
 													<button class='close' data-dismiss='alert'>×</button>
 													<strong>呼叫服務失敗或網路異常，請稍候重試!</strong>
@@ -318,20 +317,20 @@ $ ->
 										else
 											if response.Result.ExecuteCount is "1"
 												if edit_target is "message"
-													global.student.FacebookID = $('#editModal #facebook').val()
-													global.student.SkypeID = $('#editModal #skype').val()
+													global.student.FacebookID = $('#web #editModal #facebook').val()
+													global.student.SkypeID = $('#web #editModal #skype').val()
 													
 												if edit_target is "emergency-contact"
-													global.student.EmergencyContactName = $('#editModal #name').val()
-													global.student.EmergencyContactRelationship = $('#editModal #relationship').val()
-													global.student.EmergencyContactTel = $('#editModal #phone').val()
+													global.student.EmergencyContactName = $('#web #editModal #name').val()
+													global.student.EmergencyContactRelationship = $('#web #editModal #relationship').val()
+													global.student.EmergencyContactTel = $('#web #editModal #phone').val()
 													
 											$("#editModal").modal "hide"
 								}
 							else
-								$("#editModal").modal "hide"
+								$("#web #editModal").modal "hide"
 						
-						$("#editModal").modal "hide"
+						$("#web #editModal").modal "hide"
 			}
 		else
 			if request_udt isnt ""
@@ -340,7 +339,7 @@ $ ->
 					body: request_udt,
 					result: (response, error, xhr) ->
 						if error?
-							$("#editModal #errorMessage").html """
+							$("#web #editModal #errorMessage").html """
 								<div class='alert alert-error'>
 									<button class='close' data-dismiss='alert'>×</button>
 									<strong>呼叫服務失敗或網路異常，請稍候重試!</strong>
@@ -349,25 +348,25 @@ $ ->
 						else
 							if response.Result.ExecuteCount is "1"
 								if edit_target is "message"
-									global.student.FacebookID = $('#editModal #facebook').val()
-									global.student.SkypeID = $('#editModal #skype').val()
+									global.student.FacebookID = $('#web #editModal #facebook').val()
+									global.student.SkypeID = $('#web #editModal #skype').val()
 									
 								if edit_target is "emergency-contact"
-									global.student.EmergencyContactName = $('#editModal #name').val()
-									global.student.EmergencyContactRelationship = $('#editModal #relationship').val()
-									global.student.EmergencyContactTel = $('#editModal #phone').val()
+									global.student.EmergencyContactName = $('#web #editModal #name').val()
+									global.student.EmergencyContactRelationship = $('#web #editModal #relationship').val()
+									global.student.EmergencyContactTel = $('#web #editModal #phone').val()
 									
-							$("#editModal").modal "hide"
+							$("#web #editModal").modal "hide"
 				}
 			else
-				$("#editModal").modal "hide"
+				$("#web #editModal").modal "hide"
 		
-	$("#baseinfo .label-title a").click () ->
+	$("#web #baseinfo .label-title a").click () ->
 		if global.student
 			if $(@).attr("edit-target") is "phone"
-				$("#editModal #save-data").attr "edit-target", "phone"
-				$("#editModal .modal-header h3").html "編輯 - 電話資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "phone"
+				$("#web #editModal .modal-header h3").html "編輯 - 電話資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<fieldset>
 							<div class='control-group'>
@@ -392,9 +391,9 @@ $ ->
 					</form>
 				"""
 			else if $(@).attr("edit-target") is "address"
-				$("#editModal #save-data").attr "edit-target", "address"
-				$("#editModal .modal-header h3").html "編輯 - 地址資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "address"
+				$("#web #editModal .modal-header h3").html "編輯 - 地址資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<legend>通訊地址</legend>
 						<fieldset>
@@ -455,9 +454,9 @@ $ ->
 					</form>
 				"""
 			else if $(@).attr("edit-target") is "message"
-				$("#editModal #save-data").attr "edit-target", "message"
-				$("#editModal .modal-header h3").html "編輯 - 即時通訊資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "message"
+				$("#web #editModal .modal-header h3").html "編輯 - 即時通訊資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<fieldset>
 							<div class='control-group'>
@@ -482,9 +481,9 @@ $ ->
 					</form>
 				"""
 			else if $(@).attr("edit-target") is "emergency-contact"
-				$("#editModal #save-data").attr "edit-target", "emergency-contact"
-				$("#editModal .modal-header h3").html "編輯 - 緊急聯絡人資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "emergency-contact"
+				$("#web #editModal .modal-header h3").html "編輯 - 緊急聯絡人資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<fieldset>
 							<div class='control-group'>
@@ -509,9 +508,9 @@ $ ->
 					</form>
 				"""
 			else if $(@).attr("edit-target") is "custodian-info"
-				$("#editModal #save-data").attr "edit-target", "custodian-info"
-				$("#editModal .modal-header h3").html "編輯 - 監護人資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "custodian-info"
+				$("#web #editModal .modal-header h3").html "編輯 - 監護人資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<fieldset>
 							<div class='control-group'>
@@ -554,9 +553,9 @@ $ ->
 					</form>
 				"""
 			else if $(@).attr("edit-target") is "father-info"
-				$("#editModal #save-data").attr "edit-target", "father-info"
-				$("#editModal .modal-header h3").html "編輯 - 父親資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "father-info"
+				$("#web #editModal .modal-header h3").html "編輯 - 父親資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<fieldset>
 							<div class='control-group'>
@@ -593,9 +592,9 @@ $ ->
 					</form>
 				"""
 			else if $(@).attr("edit-target") is "mother-info"
-				$("#editModal #save-data").attr "edit-target", "mother-info"
-				$("#editModal .modal-header h3").html "編輯 - 母親資訊"
-				$("#editModal .modal-body").html """
+				$("#web #editModal #save-data").attr "edit-target", "mother-info"
+				$("#web #editModal .modal-header h3").html "編輯 - 母親資訊"
+				$("#web #editModal .modal-body").html """
 					<form class='form-horizontal'>
 						<fieldset>
 							<div class='control-group'>
@@ -632,32 +631,38 @@ $ ->
 					</form>
 				"""
 				
-			$("#editModal").modal "show"
+			$("#web #editModal").modal "show"
 	
-	$("#student-list").hover(
+	$("#web #student-list").hover(
 		() -> $(@).css("overflow", "auto")
 		,
 		() -> $(@).css("overflow", "hidden")
 	)
 	
-	$("#baseinfo").hover(
+	$("#web #baseinfo").hover(
 		() -> $(@).css("overflow", "auto")
 		,
 		() -> $(@).css("overflow", "hidden")
 	)
 	
-	$("#academic").hover(
+	$("#web #academic").hover(
 		() -> $(@).css("overflow", "auto")
 		,
 		() -> $(@).css("overflow", "hidden")
 	)
 	
-	$("#behavior").hover(
+	$("#web #behavior").hover(
 		() -> $(@).css("overflow", "auto")
 		,
 		() -> $(@).css("overflow", "hidden")
 	)
 	
+	$("#phone #header a").click (e) ->
+		e.preventDefault()
+		$("#phone #container .content").removeClass "hide"
+		$("#phone #container .content").addClass "hide"
+		$("#phone #container ##{$(@).attr('target')}").removeClass "hide"
+
 	gadget.getContract("ta").send {
 		service: "TeacherAccess.GetCurrentSemester",
 		body: "",
@@ -681,35 +686,66 @@ $ ->
 				<li><a href='#' school-year='#{global.schoolYear - 2}' semester='1'>#{global.schoolYear - 2}1</a></li>
 			"""
 			
-			$("#academic .breadcrumb").html items			
-			$("#academic .breadcrumb a").click (e) ->
+			$("#web #academic .breadcrumb").html items
+			$("#web #academic .breadcrumb a").click (e) ->
 				e.preventDefault()
-				$("#academic .breadcrumb .label-title").html "#{$(@).attr('school-year')}#{$(@).attr('semester')}"
+				$("#web #academic .breadcrumb .label-title").html "#{$(@).attr('school-year')}#{$(@).attr('semester')}"
 				if global.student?
 					global.academic =
 						schoolYear: $(@).attr("school-year")
 						semester: $(@).attr("semester")
 					
-					$("#academic #subject-score tbody").html ""
-					$("#academic #domain-score tbody").html ""
+					$("#web #academic #subject-score tbody").html ""
+					$("#web #academic #domain-score tbody").html ""
 					getAcademic()
-				
-			$("#behavior .breadcrumb").html items			
-			$("#behavior .breadcrumb a").click (e) ->
+			
+			$("#phone #academic .breadcrumb").html items
+			$("#phone #academic .breadcrumb a").click (e) ->
 				e.preventDefault()
-				$("#behavior .breadcrumb .label-title").html "#{$(@).attr('school-year')}#{$(@).attr('semester')}"
+				$("#phone #academic .breadcrumb .label-title").html "#{$(@).attr('school-year')}#{$(@).attr('semester')}"
+				if global.student?
+					global.academic =
+						schoolYear: $(@).attr("school-year")
+						semester: $(@).attr("semester")
+					
+					$("#phone #academic #subject-score tbody").html ""
+					$("#phone #academic #domain-score tbody").html ""
+					getAcademic()
+			
+			$("#web #behavior .breadcrumb").html items
+			$("#web #behavior .breadcrumb a").click (e) ->
+				e.preventDefault()
+				$("#web #behavior .breadcrumb .label-title").html "#{$(@).attr('school-year')}#{$(@).attr('semester')}"
 				if global.student?
 					global.behavior =
 						schoolYear: $(@).attr("school-year")
 						semester: $(@).attr("semester")
 					
-					$("#behavior #morality tbody").html ""
-					$("#behavior #attendance .content").html ""
-					$("#behavior #discipline .content").html ""
-					$("#behavior #discipline tbody").html ""
+					$("#web #behavior #morality tbody").html ""
+					$("#web #behavior #attendance .content").html ""
+					$("#web #behavior #discipline .content").html ""
+					$("#web #behavior #discipline tbody").html ""
 					getMorality()
 					getAttendance()
 					getDiscipline()
+			
+			$("#phone #behavior .breadcrumb").html items
+			$("#phone #behavior .breadcrumb a").click (e) ->
+				e.preventDefault()
+				$("#phone #behavior .breadcrumb .label-title").html "#{$(@).attr('school-year')}#{$(@).attr('semester')}"
+				if global.student?
+					global.behavior =
+						schoolYear: $(@).attr("school-year")
+						semester: $(@).attr("semester")
+					
+					$("#phone #behavior #morality tbody").html ""
+					$("#phone #behavior #attendance .content").html ""
+					$("#phone #behavior #discipline .content").html ""
+					$("#phone #behavior #discipline tbody").html ""
+					getMorality()
+					getAttendance()
+					getDiscipline()
+					
 	}
 	
 	gadget.getContract("ischool.addressbook").send {
@@ -721,11 +757,12 @@ $ ->
 				
 				global.students = $(response.Result.Student)
 				className = ""
-				items = []
+				items1 = []
+				items2 = []
 				global.students.each (index, student) ->
 					if @ClassName isnt className
 						className = @ClassName
-						items.push "<li class='nav-header'>#{@ClassName}</li>"
+						items1.push "<li class='nav-header'>#{@ClassName}</li>"
 					
 					photo = "img/photo_male.png"
 					if @FreshmanPhoto? and @FreshmanPhoto isnt ""
@@ -735,7 +772,7 @@ $ ->
 					else
 						photo = "img/photo_female.png"
 					
-					items.push """
+					items1.push """
 						<li#{if index is 0 then " class='active'" else ''}>
 							<a student-index='#{index}'>
 								<img class='student-photo' src='#{photo}'/>
@@ -744,6 +781,17 @@ $ ->
 								<span class='student-number'>#{@StudentNumber}</span>
 							</a>
 						</li>
+					"""
+					items2.push """
+						<tr>
+							<td student-index='#{index}'>
+								<img class='student-photo' src='#{photo}'/>
+								<span class='student-name'>#{@StudentName}</span>
+								<span class='class-name'>#{@ClassName}</span>
+								<span class='seat-no'>#{@SeatNo}</span>
+								<span class='student-number'>#{@StudentNumber}</span>
+							</td>
+						</tr>
 					"""
 					
 					if index is 0
@@ -754,8 +802,8 @@ $ ->
 						getAttendance()
 						getDiscipline()
 						
-				$("#student-list").html items.join ""
-				$("#student-list a").click (e) ->
+				$("#web #student-list").html items1.join ""
+				$("#web #student-list a").click (e) ->
 					e.preventDefault()
 					$(@).tab "show"
 					global.student = global.students[$(@).attr("student-index")]
@@ -765,25 +813,42 @@ $ ->
 					getMorality()
 					getAttendance()
 					getDiscipline()
+				
+				$("#phone #student-list table tbody").html items2.join ""
+				$("#phone #student-list table tbody td").click (e) ->
+					e.preventDefault()
+					global.student = global.students[$(@).attr("student-index")]
+					resetData()
+					setBaseInfo()
+					getAcademic()
+					getMorality()
+					getAttendance()
+					getDiscipline()
+					$("#phone #student-list").toggleClass "hide"
+					$("#phone #baseinfo").toggleClass "hide"
 	}
 
 resetData = () ->
-	$("#baseinfo #base-content").html ""
-	$("#baseinfo #phone tbody").html ""
-	$("#baseinfo #address tbody").html ""
-	$("#baseinfo #message tbody").html ""
-	$("#baseinfo #emergency-contact tbody").html ""
-	$("#baseinfo #custodian-info tbody").html ""
-	$("#baseinfo #father-info tbody").html ""
-	$("#baseinfo #mother-info tbody").html ""
+	$("#web #baseinfo #base-content").html ""
+	$("#web #baseinfo #phone tbody").html ""
+	$("#web #baseinfo #address tbody").html ""
+	$("#web #baseinfo #message tbody").html ""
+	$("#web #baseinfo #emergency-contact tbody").html ""
+	$("#web #baseinfo #custodian-info tbody").html ""
+	$("#web #baseinfo #father-info tbody").html ""
+	$("#web #baseinfo #mother-info tbody").html ""
 	
-	$("#academic #subject-score tbody").html ""
-	$("#academic #domain-score tbody").html ""
+	$("#web #academic #subject-score tbody").html ""
+	$("#web #academic #domain-score tbody").html ""
 	
-	$("#behavior #morality tbody").html ""
-	$("#behavior #attendance .content").html ""
-	$("#behavior #discipline .content").html ""
-	$("#behavior #discipline tbody").html ""
+	$("#web #behavior #morality tbody").html ""
+	$("#web #behavior #attendance .content").html ""
+	$("#web #behavior #discipline .content").html ""
+	$("#web #behavior #discipline tbody").html ""
+	
+	$("#phone #baseinfo table tbody").html ""
+	$("#phone #academic table tbody").html ""
+	$("#phone #behavior table tbody").html ""
 	
 setBaseInfo = () ->
 	student = global.student
@@ -813,7 +878,7 @@ setBaseInfo = () ->
 		student.PermanentAddress?.AddressList?.Address?.Town +
 		student.PermanentAddress?.AddressList?.Address?.DetailAddress
 	
-	$("#baseinfo #base-content").html """
+	$("#web #baseinfo #base-content").html """
 		<div style='display:inline-block;vertical-align:bottom'>#{freshmanPhoto}#{graduatePhoto}</div>
 		<div style='display:inline-block;vertical-align:bottom'>
 			<div style='margin-bottom:8px'><span class='label label-info'>#{student.StudentName ? ""}</span></div>
@@ -822,46 +887,115 @@ setBaseInfo = () ->
 			<div style='margin-bottom:8px'><span class='label label-info'>#{student.IDNumber ? ""}</span></div>
 		</div>
 	"""
-	$("#baseinfo #phone tbody").html """
+	$("#web #baseinfo #phone tbody").html """
 		<tr><td><span class='badge badge-success'>通訊</span></td><td><span>#{student.ContactPhone ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>戶籍</span></td><td><span>#{student.PermanentPhone ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>行動</span></td><td><span>#{student.SMSPhone ? ""}</span></td></tr>
 	"""
-	$("#baseinfo #address tbody").html """
-		<tr><td><span class='badge badge-success'>通訊</span></td><td><span>#{mailingAddress}</span></div>
-		<tr><td><span class='badge badge-success'>戶籍</span></td><td><span>#{permanentAddress}</span></div>
+	$("#web #baseinfo #address tbody").html """
+		<tr><td><span class='badge badge-success'>通訊</span></td><td><span>#{mailingAddress}</span></div></td></tr>
+		<tr><td><span class='badge badge-success'>戶籍</span></td><td><span>#{permanentAddress}</span></div></td></tr>
 	"""
-	$("#baseinfo #message tbody").html """
+	$("#web #baseinfo #message tbody").html """
 		<tr><td><span class='badge badge-success'>Email</span></td><td><span>#{student.EmailAddress}</span></td></tr>
 		<tr><td><span class='badge badge-success'>Facebook</span></td><td><span>#{student.FacebookID}</span></td></tr>
 		<tr><td><span class='badge badge-success'>Skype</span></td><td><span>#{student.SkypeID}</span></td></tr>
 	"""
-	$("#baseinfo #emergency-contact tbody").html """
-		<tr><td colspan='2'><span>#{student.EmergencyContactName ? ""}</td></tr>
+	$("#web #baseinfo #emergency-contact tbody").html """
+		<tr><td colspan='2'><span>#{student.EmergencyContactName ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>關係</span></td><td><span>#{student.EmergencyContactRelationship ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>電話</span></td><td><span>#{student.EmergencyContactTel ? ""}</span></td></tr>
 	"""
-	$("#baseinfo #custodian-info tbody").html """
-		<tr><td colspan='2'><span>#{student.CustodianName ? ""}</td></tr>
+	$("#web #baseinfo #custodian-info tbody").html """
+		<tr><td colspan='2'><span>#{student.CustodianName ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>關係</span></td><td><span>#{student.CustodianRelationship ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>電話</span></td><td><span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.Phone ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>Email</span></td><td><span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.Email ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>職業</span></td><td><span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.Job ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>教育程度</span></td><td><span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.EducationDegree ? ""}</span></td></tr>
 	"""
-	$("#baseinfo #father-info tbody").html """
-		<tr><td colspan='2'><span>#{student.FatherName ? ""}</td></tr>
+	$("#web #baseinfo #father-info tbody").html """
+		<tr><td colspan='2'><span>#{student.FatherName ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>電話</span></td><td><span>#{student.FatherOtherInfo?.FatherOtherInfo?.Phone ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>Email</span></td><td><span>#{student.FatherOtherInfo?.FatherOtherInfo?.Email ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>職業</span></td><td><span>#{student.FatherOtherInfo?.FatherOtherInfo?.Job ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>教育程度</span></td><td><span>#{student.FatherOtherInfo?.FatherOtherInfo?.EducationDegree ? ""}</span></td></tr>
 	"""
-	$("#baseinfo #mother-info tbody").html """
-		<tr><td colspan='2'><span>#{student.MotherName ? ""}</td></tr>
+	$("#web #baseinfo #mother-info tbody").html """
+		<tr><td colspan='2'><span>#{student.MotherName ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>電話</span></td><td><span>#{student.MotherOtherInfo?.MotherOtherInfo?.Phone ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>Email</span></td><td><span>#{student.MotherOtherInfo?.MotherOtherInfo?.Email ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>職業</span></td><td><span>#{student.MotherOtherInfo?.MotherOtherInfo?.Job ? ""}</span></td></tr>
 		<tr><td><span class='badge badge-success'>教育程度</span></td><td><span>#{student.MotherOtherInfo?.MotherOtherInfo?.EducationDegree ? ""}</span></td></tr>
+	"""
+	
+	$("#phone #baseinfo table tbody").html """
+		<tr>
+			<td>
+				<div style='display:inline-block;vertical-align:bottom'>#{freshmanPhoto}#{graduatePhoto}</div>
+				<div style='display:inline-block;vertical-align:bottom'>
+					<div style='margin-bottom:8px'><span class='label label-info'>#{student.StudentName}&nbsp;</span></div>
+					<div style='margin-bottom:8px'><span class='label label-info'>#{student.EnglishName}&nbsp;</span></div>
+					<div style='margin-bottom:8px'><span class='label label-info'>#{if student.Birthdate then student.Birthdate.substr(0, 10) else ""}&nbsp;</span></div>
+					<div style='margin-bottom:8px'><span class='label label-info'>#{student.IDNumber}&nbsp;</span></div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span class='label label-success'>通訊</span> <span>#{student.ContactPhone ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>戶籍</span> <span>#{student.PermanentPhone ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>行動</span> <span>#{student.SMSPhone ? "&nbsp;"}</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span class='label label-success'>通訊</span> <span>#{mailingAddress ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>戶籍</span> <span>#{permanentAddress ? "&nbsp;"}</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span class='label label-success'>Email</span> <span>#{student.EmailAddress}&nbsp;</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>Facebook</span> <span>#{student.FacebookID}&nbsp;</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>Skype</span> <span>#{student.SkypeID}&nbsp;</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span>#{student.EmergencyContactName ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>關係</span> <span>#{student.EmergencyContactRelationship}&nbsp;</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>電話</span> <span>#{student.EmergencyContactTel}&nbsp;</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span>#{student.CustodianName ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>關係</span> <span>#{student.CustodianRelationship ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>電話</span> <span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.Phone ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>Email</span> <span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.Email ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>職業</span> <span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.Job ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>教育程度</span> <span>#{student.CustodianOtherInfo?.CustodianOtherInfo?.EducationDegree ? "&nbsp;"}</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span>#{student.FatherName ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>電話</span> <span>#{student.FatherOtherInfo?.FatherOtherInfo?.Phone ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>Email</span> <span>#{student.FatherOtherInfo?.FatherOtherInfo?.Email ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>職業</span> <span>#{student.FatherOtherInfo?.FatherOtherInfo?.Job ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>教育程度</span> <span>#{student.FatherOtherInfo?.FatherOtherInfo?.EducationDegree ? "&nbsp;"}</span></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div style='margin-bottom:3px'><span>#{student.MotherName ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>電話</span> <span>#{student.MotherOtherInfo?.MotherOtherInfo?.Phone ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>Email</span> <span>#{student.MotherOtherInfo?.MotherOtherInfo?.Email ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>職業</span> <span>#{student.MotherOtherInfo?.MotherOtherInfo?.Job ? "&nbsp;"}</span></div>
+				<div style='margin-bottom:3px'><span class='label label-success'>教育程度</span> <span>#{student.MotherOtherInfo?.MotherOtherInfo?.EducationDegree ? "&nbsp;"}</span></div>
+			</td>
+		</tr>
 	"""
 	
 getAcademic = () ->
@@ -889,8 +1023,10 @@ getAcademic = () ->
 								</td>
 							</tr>
 						"""
-					$("#academic #subject-score tbody").html items.join ""
-					$("#academic #subject-score .label-title").html "<span class='badge badge-info'>科目成績</span>"
+					$("#web #academic #subject-score tbody").html items.join ""
+					$("#web #academic #subject-score .label-title").html "<span class='badge badge-info'>科目成績</span>"
+					$("#phone #academic #subject-score table tbody").html items.join ""
+					$("#phone #academic #subject-score .title").html "<span class='badge badge-info'>科目成績</span>"
 				items = []
 				if response.Result.SemsSubjScore?.ScoreInfo?.Domains?.Domain?
 					$(response.Result.SemsSubjScore.ScoreInfo.Domains.Domain).each () ->
@@ -904,8 +1040,10 @@ getAcademic = () ->
 								</td>
 							</tr>
 						"""
-					$("#academic #domain-score tbody").html item.join ""
-					$("#academic #domain-score .label-title").html "<span class='badge badge-info'>領域成績</span>"
+					$("#web #academic #domain-score tbody").html item.join ""
+					$("#web #academic #domain-score .label-title").html "<span class='badge badge-info'>領域成績</span>"
+					$("#phone #academic #domain-score table tbody").html item.join ""
+					$("#phone #academic #domain-score .title").html "<span class='badge badge-info'>領域成績</span>"
 			else
 				items = []
 				if response.Result.SemsSubjScore?.ScoreInfo?.SemesterSubjectScoreInfo?.Subject?
@@ -926,8 +1064,10 @@ getAcademic = () ->
 								</td>
 							</tr>
 						"""
-					$("#academic #subject-score tbody").html items.join ""
-					$("#academic #subject-score .label-title").html "<span class='badge badge-info'>科目成績</span>"
+					$("#web #academic #subject-score tbody").html items.join ""
+					$("#web #academic #subject-score .label-title").html "<span class='badge badge-info'>科目成績</span>"
+					$("#phone #academic #subject-score table tbody").html items.join ""
+					$("#phone #academic #subject-score .title").html "<span class='badge badge-info'>科目成績</span>"
 					
 				gadget.getContract("ischool.addressbook").send {
 					service: "addressbook.GetEntryScore",
@@ -939,7 +1079,7 @@ getAcademic = () ->
 						</Request>
 					"""
 					result: (response, status, xhr) ->
-						$("#domain-score .label-title").html "<span class='badge badge-info'>分項成績</span>"
+						$("#web #domain-score .label-title").html "<span class='badge badge-info'>分項成績</span>"
 						items = []
 						if response.Result.SemsEntryScore?
 							$(response.Result.SemsEntryScore).each () ->
@@ -955,7 +1095,8 @@ getAcademic = () ->
 												</td>
 											</tr>
 										"""
-									$("#academic #domain-score tbody").html items.join ""
+									$("#web #academic #domain-score tbody").html items.join ""
+									$("#phone #academic #domain-score table tbody").html items.join ""
 				}
 	}
 
@@ -979,8 +1120,10 @@ getMorality = () ->
 							<td><span>#{@Face}</span></td>
 						</tr>
 					"""
-				$("#behavior #morality tbody").html items.join ""
-				$("#behavior #morality .label-title").html "<span class='badge badge-info'>德行成績</span>"
+				$("#web #behavior #morality tbody").html items.join ""
+				$("#web #behavior #morality .label-title").html "<span class='badge badge-info'>德行成績</span>"
+				$("#phone #behavior #morality table tbody").html items.join ""
+				$("#phone #behavior #morality .title").html "德行成績"
 			else if response.Result.DailyLifeScore?.TextScore?
 				if @DailyBehavior?
 					items.push "<tr><td colspan='2'><span>#{@DailyBehavior.Name ? '日常行為表現'}</span></td></tr>"
@@ -1030,8 +1173,10 @@ getMorality = () ->
 					items.push "<tr><td colspan='2'><span>#{@OtherRecommend.Name ? '其他具體建議'}</span></td></tr>"
 					items.push "<tr><td colspan='2'><span>#{@OtherRecommend['#text'] ? ''}</span></td></tr>"
 			
-				$("#behavior #morality tbody").html items.join ""
-				$("#behavior #morality .label-title").html "<span class='badge badge-info'>日常行為表現</span>"
+				$("#web #behavior #morality tbody").html items.join ""
+				$("#web #behavior #morality .label-title").html "<span class='badge badge-info'>日常行為表現</span>"
+				$("#phone #behavior #morality tbody").html items.join ""
+				$("#phone #behavior #morality .title").html "日常行為表現"
 	}
 
 getAttendance = () ->
@@ -1059,7 +1204,8 @@ getAttendance = () ->
 					<span class='badge badge-inverse'>#{absences[name]} #{name}</span>
 				"""
 				
-			$("#behavior #attendance .content").html items.join " "
+			$("#web #behavior #attendance .content").html items.join " "
+			$("#phone #behavior #attendance .well").html items.join " "
 	}
 
 getDiscipline = () ->
@@ -1113,9 +1259,13 @@ getDiscipline = () ->
 							</tr>
 						"""
 				
-				$("#discipline .content").html """
+				$("#web #behavior #discipline tbody").html items.join("")
+				$("#web #discipline .content").html """
 					#{if sum_merit.ma + sum_merit.mb + sum_merit.mc isnt 0 then "<span class='badge badge-success'>#{sum_merit.ma} 大功 #{sum_merit.mb} 小功 #{sum_merit.mc} 嘉獎</span>" else ""}
 					#{if sum_merit.da + sum_merit.db + sum_merit.dc isnt 0 then "<span class='badge badge-important'>#{sum_merit.da} 大過 #{sum_merit.db} 小過 #{sum_merit.dc} 警告</span>" else ""}
 				"""
-				$("#behavior #discipline tbody").html items.join("")
+				$("#phone #discipline .well").html """
+					#{if sum_merit.ma + sum_merit.mb + sum_merit.mc isnt 0 then "<span class='badge badge-success'>#{sum_merit.ma} 大功 #{sum_merit.mb} 小功 #{sum_merit.mc} 嘉獎</span>" else ""}
+					#{if sum_merit.da + sum_merit.db + sum_merit.dc isnt 0 then "<span class='badge badge-important'>#{sum_merit.da} 大過 #{sum_merit.db} 小過 #{sum_merit.dc} 警告</span>" else ""}
+				"""
 	}
